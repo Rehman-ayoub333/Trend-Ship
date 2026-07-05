@@ -1,0 +1,8 @@
+# Prevent directory browsing
+Options -Indexes
+
+# Security headers on all PHP responses
+<Files "*.php">
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "DENY"
+</Files>

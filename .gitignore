@@ -1,0 +1,6 @@
+node_modules
+.env
+api/config.php
+setup.sql
+data/trendship.sqlite
+tmp/

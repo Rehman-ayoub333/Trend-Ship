@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRENDSHIP | LX Hausys 2025 Design Trend</title>
+<meta name="description" content="TRENDSHIP by LX Hausys — 2025 Design Trend Platform. Discover SY(E)NERGY and the four design themes shaping how we live.">
+<meta property="og:title" content="TRENDSHIP — LX Hausys 2025">
+<meta property="og:description" content="New energy that flourishes when we come together.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#d4c4bc">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<!-- CDN Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+<style>
+/* ═══════════════════════════════════════════════════════
+   TRENDSHIP — HOME PAGE
+   Clean, optimised, no duplicate rules.
+═══════════════════════════════════════════════════════ */
+
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root{
+  --greige:#d4c4bc; --dark:#0a0a0a; --off-white:#f4efe9;
+  --rose:#d4857a;   --rose-light:#e8a8b0; --rose-pale:#f5dde0;
+  --rose-dust:#c4968e; --wine:#8a4a42; --maison:#bf7268;
+  --text-dark:#1a1614; --text-light:#f0e8e0; --gold:#c8a878;
+  --ff-display:'Bebas Neue',sans-serif;
+  --ff-body:'EB Garamond',serif;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+
+/* ─── RESET ───────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:auto;font-size:16px}
+body{background:var(--dark);color:var(--text-light);font-family:var(--ff-body);overflow-x:hidden;cursor:none}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{border:none;background:none;font-family:inherit;cursor:none}
+section{width:100%;position:relative;overflow:hidden}
+@media(hover:none){body{cursor:auto}}
+
+/* ─── PROGRESS BAR ────────────────────────────────────── */
+#progress-bar{
+  position:fixed;top:0;left:0;height:2px;width:0%;
+  background:var(--rose);z-index:9998;pointer-events:none;
+  transition:width .05s linear;
+}
+
+/* ─── CURSOR ──────────────────────────────────────────── */
+#cur{
+  position:fixed;top:0;left:0;width:14px;height:14px;
+  border:1.5px solid rgba(255,255,255,.9);border-radius:50%;
+  pointer-events:none;z-index:9999;mix-blend-mode:difference;
+  will-change:transform;
+  transition:width .2s,height .2s,background .2s,border-color .2s;
+}
+#cur.xl{width:52px;height:52px;background:rgba(212,133,122,.25);border-color:var(--rose)}
+#cur.lt{border-color:rgba(26,22,20,.85)}
+@media(hover:none){#cur{display:none}}
+
+/* ─── GRAIN ───────────────────────────────────────────── */
+#grain{
+  position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:.042;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain .4s steps(3) infinite;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)}33%{transform:translate(-5%,4%)}
+  66%{transform:translate(4%,-4%)}100%{transform:translate(-3%,5%)}
+}
+
+/* ─── NAV ─────────────────────────────────────────────── */
+#nav{
+  position:fixed;top:0;left:0;width:100%;
+  padding:24px 56px;display:flex;justify-content:space-between;align-items:center;
+  z-index:1000;color:var(--text-dark);
+  transition:color .4s,backdrop-filter .5s,background .5s;
+  will-change: background, backdrop-filter;
+}
+#nav.dk{color:var(--text-light)}
+#nav.lt{color:var(--text-dark);backdrop-filter:blur(14px);background:rgba(244,239,233,.72)}
+#nav.bl{backdrop-filter:blur(18px);background:rgba(10,10,10,.45)}
+.n-logo{font-family:var(--ff-display);font-size:18px;letter-spacing:.14em;transition:opacity .25s}
+.n-logo:hover{opacity:.72}
+.n-links{display:flex;gap:32px;align-items:center;flex-shrink:1;min-width:0}
+.n-a{
+  font-family:var(--ff-body);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;opacity:.72;position:relative;
+  transition:opacity .25s;
+}
+.n-a::after{
+  content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;
+  background:var(--rose);transition:width .3s var(--ease-out);
+}
+.n-a:hover,.n-a.active{opacity:1}
+.n-a:hover::after,.n-a.active::after{width:100%}
+
+/* maison / atelier access */
+.n-maison{
+  font-family:var(--ff-body);font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--wine);opacity:1;
+  position:relative;transition:opacity .25s,color .25s;
+  flex-shrink:0;
+}
+.n-maison::after{
+  content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;
+  background:var(--rose);transition:width .3s var(--ease-out);
+}
+.n-maison:hover{opacity:1;color:var(--rose)}
+.n-maison:hover::after{width:100%}
+#nav.dk .n-maison{color:var(--rose-light)}
+#nav.lt .n-maison{color:var(--rose)}
+#nav.lt #nav-menu{background:var(--text-dark);color:#fff}
+
+/* hamburger — shared rules in css/nav.css */
+
+@media(max-width:600px){#nav{padding:20px 24px}}
+
+/* ─── NAV OVERLAY ─────────────────────────────────────── */
+#nav-overlay{
+  position:fixed;inset:0;background:var(--dark);
+  z-index:900;display:flex;align-items:center;
+  transform-origin:top right;transform:scale(0);opacity:0;
+  pointer-events:none;
+}
+#nav-overlay.open{pointer-events:all}
+.no-inner{width:100%;max-width:900px;padding:0 56px}
+.no-item{
+  display:flex;align-items:baseline;gap:20px;
+  padding:16px 0;border-bottom:1px solid rgba(255,255,255,.04);
+  transform:translateY(40px);opacity:0;
+}
+.no-item:hover .no-name{color:var(--rose)}
+.no-num{font-family:var(--ff-display);font-size:16px;color:var(--rose-dust);opacity:.5;min-width:32px}
+.no-name{font-family:var(--ff-display);font-size:clamp(32px,5.5vw,72px);letter-spacing:-.01em;color:var(--off-white);line-height:1;transition:color .25s}
+.no-arrow{font-size:20px;color:var(--rose);margin-left:auto;opacity:0;transition:opacity .2s,transform .2s}
+.no-item:hover .no-arrow{opacity:1;transform:translateX(6px)}
+.no-close{
+  position:absolute;top:24px;right:56px;
+  font-size:20px;color:var(--text-light);opacity:.5;
+  transition:opacity .25s;
+}
+.no-close:hover{opacity:1}
+.no-footer{display:flex;gap:28px;padding-top:24px;opacity:0}
+.no-footer a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,232,224,.35);transition:color .2s}
+.no-footer a:hover{color:var(--rose-dust)}
+
+/* ─── TRANSITION WIPE ──────────────────────────────────── */
+#t-overlay{position:fixed;inset:0;z-index:5000;pointer-events:none;display:flex;align-items:center;justify-content:center}
+.t-dot{width:2px;height:2px;background:var(--dark);border-radius:50%;transform:scale(0)}
+
+/* ═══ §1 HERO ═══════════════════════════════════════════ */
+#hero{
+  min-height:100vh;background:var(--greige);
+  display:flex;align-items:flex-end;
+  position:relative;overflow:hidden;
+}
+#three-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.hero-wordmark{
+  position:relative;z-index:2;
+  font-family:var(--ff-display);
+  font-size:clamp(88px,15.5vw,230px);
+  letter-spacing:-.03em;line-height:.85;
+  color:var(--text-dark);
+  padding:0 0 44px 52px;
+  display:flex;overflow:hidden;
+}
+.lw{display:inline-block;overflow:hidden;vertical-align:bottom;line-height:.9}
+.lc{display:inline-block;transform:translateY(115%);opacity:0}
+/* scroll indicator */
+.hero-scroll{
+  position:absolute;bottom:48px;right:56px;z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;
+}
+.hero-scroll span{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--text-dark);opacity:.45}
+.hero-scroll-line{width:1px;height:40px;background:var(--text-dark);opacity:.25;animation:scrollpulse 1.8s ease-in-out infinite}
+@keyframes scrollpulse{0%,100%{transform:scaleY(1);opacity:.25}50%{transform:scaleY(1.4);opacity:.5}}
+
+/* ═══ §2 PHOTOS ══════════════════════════════════════════ */
+#photos{
+  min-height:100vh;background:var(--dark);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:100px 0 80px;
+}
+.ph-head{
+  text-align:center;padding:0 24px;margin-bottom:56px;
+}
+.ph-eyebrow{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose-dust);opacity:.6;margin-bottom:10px}
+.ph-cap{font-size:clamp(14px,1.1vw,16px);line-height:1.85;letter-spacing:.05em;color:var(--text-light);opacity:.42;max-width:520px;margin:0 auto}
+.ph-wrap{overflow:hidden;width:100%}
+.ph-strip{will-change:transform;display:flex;gap:18px;padding:0 56px;will-change:transform}
+.ph-card{
+  flex-shrink:0;width:300px;height:450px;
+  border-radius:3px;overflow:hidden;position:relative;
+  opacity:0;transform:translateY(35px);
+}
+.ph-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.ph-card:hover img{transform:scale(1.06)}
+.ph-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,10,10,.65) 0%,transparent 55%);
+}
+.ph-card-lbl{
+  position:absolute;bottom:18px;left:18px;z-index:2;
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);
+}
+
+/* ═══ §3 SYNERGY ════════════════════════════════════════ */
+#synergy{
+  min-height:100vh;background:var(--dark);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:80px 20px;
+}
+.sy-lbl{font-size:10px;letter-spacing:.34em;text-transform:uppercase;opacity:.36;margin-bottom:10px}
+.sy-sub{font-size:15px;letter-spacing:.08em;opacity:.5;margin-bottom:56px}
+.sy-row{
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--ff-display);
+  font-size:clamp(58px,13.5vw,185px);
+  color:var(--rose-dust);line-height:1;overflow:visible;
+}
+.sy-l{display:inline-block;transform:translateX(-160px);opacity:0}
+.sy-r{display:inline-block;transform:translateX(160px);opacity:0}
+.sy-e{display:inline-flex;align-items:center;justify-content:center;transform:scale(0);opacity:0}
+.sy-ebox{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--rose);padding:.04em .1em;color:#fff;line-height:1;font-size:inherit;
+}
+.sy-tag{font-size:clamp(13px,1.2vw,16px);color:var(--rose-dust);opacity:0;margin-top:40px;letter-spacing:.06em;transform:translateY(14px)}
+
+/* ═══ §3b SYNERGY DESC ══════════════════════════════════ */
+#syn-desc{
+  background:var(--dark);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:100px 48px;
+  min-height:60vh;
+}
+.sd-main{font-size:clamp(16px,1.4vw,20px);line-height:1.9;opacity:.5;max-width:580px}
+.sd-note{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--rose-dust);opacity:.4;margin-top:24px}
+
+/* ═══ §STATS ════════════════════════════════════════════ */
+#stats{
+  background:var(--dark);border-top:1px solid rgba(255,255,255,.05);
+  padding:88px 56px;
+}
+.stats-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:32px;
+  max-width:1100px;margin:0 auto;
+}
+.stat-item{text-align:center}
+.stat-num{
+  font-family:var(--ff-display);font-size:clamp(52px,6vw,88px);
+  letter-spacing:-.02em;color:var(--rose);line-height:1;display:block;
+}
+.stat-label{font-size:10px;letter-spacing:.25em;text-transform:uppercase;opacity:.38;margin-top:8px;display:block}
+@media(max-width:700px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ═══ §4 THEMES ══════════════════════════════════════════ */
+#themes{
+  min-height:100vh;background:var(--dark);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:60px 0;
+}
+.th-lbl{font-size:10px;letter-spacing:.32em;text-transform:uppercase;opacity:.32;margin-bottom:52px}
+.th-slot{
+  position:relative;width:100%;height:300px;
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+}
+.th-slot::before,.th-slot::after{content:'';position:absolute;left:0;width:100%;height:120px;z-index:3;pointer-events:none}
+.th-slot::before{top:0;background:linear-gradient(to bottom,var(--dark),transparent)}
+.th-slot::after{bottom:0;background:linear-gradient(to top,var(--dark),transparent)}
+.th-list{will-change:transform;display:flex;flex-direction:column;align-items:center;gap:2px;will-change:transform;z-index:2}
+.th-row{display:grid;grid-template-columns:260px 1fr 260px;align-items:center;width:100vw;padding:0 56px;gap:16px}
+.th-tags{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:0;transition:opacity .4s}
+.th-tags.l{justify-content:flex-end}
+.th-tags.r{justify-content:flex-start}
+.th-thumb{width:70px;height:48px;border-radius:2px;overflow:hidden;opacity:0;transition:opacity .4s;flex-shrink:0}
+.th-thumb img{width:100%;height:100%;object-fit:cover}
+.th-name{
+  font-family:var(--ff-display);
+  font-size:clamp(44px,7.2vw,100px);
+  letter-spacing:.05em;color:#1e1e1e;
+  transition:color .4s;text-align:center;line-height:1;
+}
+.th-row.on .th-name{color:var(--rose-dust)}
+.th-row.on .th-tags{opacity:.6}
+.th-row.on .th-thumb{opacity:1}
+.th-cta{
+  margin-top:52px;background:transparent;
+  border:1px solid rgba(255,255,255,.14);
+  padding:13px 44px;border-radius:40px;
+  font-family:var(--ff-body);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--text-light);transition:border-color .3s,background .3s;
+}
+.th-cta:hover{border-color:var(--rose);background:rgba(212,133,122,.1)}
+
+/* ═══ §PHILOSOPHY ═══════════════════════════════════════ */
+#philosophy{
+  background:var(--dark);
+  padding:140px 56px;
+  display:flex;align-items:center;justify-content:center;
+  min-height:60vh;
+}
+.phil-inner{max-width:780px;text-align:center}
+.phil-quote{
+  font-family:var(--ff-body);font-style:italic;
+  font-size:clamp(22px,3.2vw,44px);
+  line-height:1.4;color:var(--text-light);opacity:.72;
+  margin-bottom:28px;
+}
+.phil-attr{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--rose-dust);opacity:.5}
+
+/* ═══ §5 MAISON ════════════════════════════════════════= */
+#maison{
+  background:radial-gradient(ellipse 90% 80% at 50% 38%,#f2c8b8 0%,#c17268 52%,#8b4840 100%);
+  display:flex;flex-direction:column;justify-content:flex-start;align-items:center;
+  overflow:hidden;position:relative;min-height:100vh;
+}
+.m-orb{
+  position:absolute;width:72vw;height:72vw;max-width:720px;max-height:720px;
+  background:radial-gradient(circle,rgba(255,255,255,.9) 0%,rgba(255,245,240,.45) 36%,transparent 68%);
+  border-radius:50%;top:6%;left:50%;
+  transform:translateX(-50%) scale(.45);filter:blur(42px);opacity:0;z-index:1;
+}
+.m-blossom{
+  position:absolute;left:-15px;top:5%;width:210px;opacity:.28;z-index:2;
+  animation:sway 8s ease-in-out infinite alternate;
+}
+@keyframes sway{from{transform:rotate(-4deg) translateY(0)}to{transform:rotate(4deg) translateY(-16px)}}
+.m-content{position:relative;z-index:3;text-align:center;padding:110px 20px 44px;max-width:740px}
+.m-exh{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#2a1a18;opacity:.55;margin-bottom:22px}
+.m-title{font-family:var(--ff-body);font-style:italic;color:#2a1a18;line-height:1.04;margin-bottom:28px}
+.m-title .de{font-size:clamp(36px,5.5vw,72px);font-weight:400;display:block}
+.m-title .sy{font-size:clamp(56px,8.5vw,116px);font-weight:700;display:block}
+.m-body{font-size:clamp(14px,1.1vw,16px);line-height:1.85;color:#2a1a18;opacity:.65;max-width:445px;margin:0 auto}
+.m-link{
+  display:inline-block;margin-top:32px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:#2a1a18;border-bottom:1px solid rgba(42,26,24,.4);padding-bottom:2px;
+  opacity:.58;transition:opacity .25s;
+}
+.m-link:hover{opacity:1}
+.m-temple{position:relative;z-index:4;width:100%;height:320px;overflow:hidden;margin-top:auto}
+.m-temple img{width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:brightness(.65) saturate(1.1);transform:translateY(55px)}
+
+/* ═══ §6 BUILDING ═══════════════════════════════════════ */
+#building{
+  min-height:72vh;background:var(--dark);
+  overflow:hidden;position:relative;
+  display:flex;align-items:flex-end;justify-content:flex-start;
+}
+.b-img{
+  width:100%;height:100%;position:absolute;inset:0;
+  object-fit:cover;filter:brightness(.48) saturate(.7);
+  transform-origin:center;
+}
+.b-vig{
+  position:absolute;inset:0;z-index:2;
+  background:radial-gradient(ellipse 85% 85% at 50% 50%,transparent 20%,rgba(0,0,0,.75) 100%);
+}
+.b-overlay{
+  position:relative;z-index:3;
+  padding:0 56px 56px;
+}
+.b-eyebrow{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(240,232,224,.3);margin-bottom:14px}
+.b-title{
+  font-family:var(--ff-display);font-size:clamp(32px,4.5vw,58px);
+  letter-spacing:-.01em;color:var(--off-white);opacity:.85;
+  line-height:1;margin-bottom:16px;
+}
+.b-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--rose-dust);transition:gap .25s;
+}
+.b-link:hover{gap:14px}
+
+/* ═══ §MATERIALS PREVIEW ════════════════════════════════ */
+#materials{
+  background:var(--off-white);
+  padding:120px 56px;color:var(--text-dark);
+}
+.mat-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:64px;
+}
+.mat-eyebrow{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose-dust);opacity:.7;margin-bottom:12px}
+.mat-h2{font-family:var(--ff-display);font-size:clamp(38px,5vw,64px);letter-spacing:-.02em;line-height:.9}
+.mat-sub{font-size:14px;line-height:1.75;opacity:.5;max-width:260px}
+.mat-link{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);display:flex;align-items:center;gap:8px;transition:gap .25s;flex-shrink:0}
+.mat-link:hover{gap:14px}
+.mat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.mat-card{border-radius:3px;overflow:hidden;position:relative;aspect-ratio:3/4;cursor:none}
+.mat-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.mat-card:hover img{transform:scale(1.06)}
+.mat-card-body{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(10,10,10,.8) 0%,transparent 70%);
+  padding:24px 18px 18px;
+}
+.mat-card-theme{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--rose-light);margin-bottom:4px}
+.mat-card-name{font-family:var(--ff-display);font-size:18px;letter-spacing:.04em;color:#fff}
+.mat-dots{display:flex;gap:5px;margin-top:8px}
+.mat-dot{width:10px;height:10px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3)}
+@media(max-width:800px){.mat-grid{grid-template-columns:repeat(2,1fr)}.mat-head{flex-direction:column;gap:24px;align-items:flex-start}}
+@media(max-width:500px){.mat-grid{grid-template-columns:1fr 1fr}}
+
+/* ═══ §7 ABOUT ═══════════════════════════════════════════ */
+#about{
+  min-height:100vh;background:var(--off-white);color:var(--text-dark);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  overflow:hidden;position:relative;padding:60px 0;
+}
+.ab-lbl{
+  position:absolute;top:48px;left:50%;transform:translateX(-50%);
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--text-dark);opacity:.32;white-space:nowrap;z-index:4;
+}
+.ab-wrap{width:100%;overflow:hidden;pointer-events:none}
+.ab-ticker{
+  font-family:var(--ff-display);font-size:clamp(130px,24vw,320px);
+  white-space:nowrap;color:var(--text-dark);
+  opacity:.07;line-height:.86;letter-spacing:-.02em;will-change:transform;
+}
+.ab-img{
+  position:absolute;border-radius:2px;overflow:hidden;
+  z-index:5;will-change:transform;box-shadow:0 18px 52px rgba(0,0,0,.14);
+}
+.ab-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.08)}
+.ab-img1{width:200px;height:260px;top:18%;left:10%}
+.ab-img2{width:168px;height:222px;bottom:14%;right:10%}
+.ab-cta{
+  position:absolute;bottom:56px;left:50%;transform:translateX(-50%);
+  z-index:6;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--text-dark);opacity:.5;display:flex;align-items:center;gap:8px;
+  transition:opacity .25s,gap .25s;
+}
+.ab-cta:hover{opacity:.9;gap:14px}
+
+/* ═══ FOOTER ═════════════════════════════════════════════ */
+#footer{
+  background:#060606;
+  padding:72px 56px 48px;
+  border-top:1px solid rgba(255,255,255,.04);
+}
+.ft-top{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;
+  gap:48px;padding-bottom:56px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.ft-logo{
+  font-family:var(--ff-display);font-size:30px;letter-spacing:.06em;
+  color:var(--off-white);opacity:.72;display:block;margin-bottom:16px;
+}
+.ft-brand p{font-size:13px;line-height:1.8;color:rgba(240,232,224,.32);max-width:280px;font-style:italic}
+.ft-social{display:flex;gap:10px;margin-top:22px}
+.ft-social a{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;letter-spacing:.08em;color:rgba(240,232,224,.38);
+  transition:border-color .25s,color .25s;
+}
+.ft-social a:hover{border-color:var(--rose-dust);color:var(--rose-dust)}
+.ft-col h4{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--rose-dust);margin-bottom:20px;opacity:.65}
+.ft-col a{display:block;font-size:13px;letter-spacing:.08em;color:rgba(240,232,224,.38);margin-bottom:11px;transition:color .2s}
+.ft-col a:hover{color:var(--rose-dust)}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:30px}
+.ft-copy{font-size:11px;letter-spacing:.1em;color:rgba(240,232,224,.2)}
+.ft-made{font-size:13px;font-style:italic;color:rgba(240,232,224,.28);letter-spacing:.04em}
+@media(max-width:800px){.ft-top{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.ft-top{grid-template-columns:1fr}.ft-bottom{flex-direction:column;gap:10px;text-align:center}}
+@media(max-width:600px){#footer{padding:56px 24px 40px}}
+</style>
+<script src="js/site-config.js"></script>
+</head>
+<body>
+
+<!-- GLOBALS: progress bar, cursor, grain, transition -->
+<div id="progress-bar"></div>
+<div id="cur" aria-hidden="true"></div>
+<div id="grain" aria-hidden="true"></div>
+<div id="t-overlay"><div class="t-dot" id="tDot"></div></div>
+
+<!-- ══ NAV ══════════════════════════════════════════════ -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="n-logo">TRENDSHIP</a>
+  <div class="n-links">
+    <a href="index.html"           class="n-a active">Home</a>
+    <a href="design-trend/index.html" class="n-a">Design Trend</a>
+    <a href="themes/index.html"    class="n-a">Themes</a>
+    <a href="exhibition/index.html" class="n-a">Exhibition</a>
+    <a href="collection/index.html" class="n-a">Collection</a>
+    <a href="trend-report/index.html" class="n-a">Report</a>
+    <a href="lookbook/index.html"  class="n-a">Lookbook</a>
+    <a href="admin/login.html" class="n-maison" title="Admin Login">Maison</a>
+    <button id="nav-menu" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+  </div>
+</nav>
+
+<!-- ══ NAV OVERLAY ═══════════════════════════════════════ -->
+<div id="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="no-close" id="nav-close" aria-label="Close menu">✕</button>
+  <div class="no-inner">
+    <a href="index.html"              class="no-item"><span class="no-num">01</span><span class="no-name">Home</span><span class="no-arrow">→</span></a>
+    <a href="design-trend/index.html" class="no-item"><span class="no-num">02</span><span class="no-name">Design Trend</span><span class="no-arrow">→</span></a>
+    <a href="themes/index.html"       class="no-item"><span class="no-num">03</span><span class="no-name">Themes</span><span class="no-arrow">→</span></a>
+    <a href="exhibition/index.html"   class="no-item"><span class="no-num">04</span><span class="no-name">Exhibition</span><span class="no-arrow">→</span></a>
+    <a href="collection/index.html"   class="no-item"><span class="no-num">05</span><span class="no-name">Collection</span><span class="no-arrow">→</span></a>
+    <a href="trend-report/index.html" class="no-item"><span class="no-num">06</span><span class="no-name">Trend Report</span><span class="no-arrow">→</span></a>
+    <a href="lookbook/index.html"     class="no-item"><span class="no-num">07</span><span class="no-name">Lookbook</span><span class="no-arrow">→</span></a>
+    <a href="about/index.html"        class="no-item"><span class="no-num">08</span><span class="no-name">About</span><span class="no-arrow">→</span></a>
+    <a href="contact/index.html"      class="no-item"><span class="no-num">09</span><span class="no-name">Contact</span><span class="no-arrow">→</span></a>
+    <a href="admin/login.html"          class="no-item"><span class="no-num">10</span><span class="no-name">Maison Access</span><span class="no-arrow">→</span></a>
+    <div class="no-footer">
+      <a href="about/index.html">About</a>
+      <a href="contact/index.html">Contact</a>
+      <a href="admin/login.html">Maison</a>
+      <a href="https://instagram.com/lxhausys" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://linkedin.com/company/lxhausys" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ §1 HERO ═══════════════════════════════════════════ -->
+<section id="hero">
+  <canvas id="three-canvas"></canvas>
+  <h1 class="hero-wordmark" id="hw">TRENDSHIP.</h1>
+  <div class="hero-scroll" id="heroScroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══ §2 PHOTO STRIP ════════════════════════════════════ -->
+<section id="photos">
+  <div class="ph-head">
+    <div class="ph-eyebrow">LX Hausys · 2025</div>
+    <p class="ph-cap">Trendship introduces new interior trends annually,<br>reflecting how customers truly live.</p>
+  </div>
+  <div class="ph-wrap">
+    <div class="ph-strip" id="phStrip">
+      <div class="ph-card">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700&q=82" alt="Warm terracotta living room interior" loading="lazy" width="700" height="1050">
+        <span class="ph-card-lbl">BOOST</span>
+      </div>
+      <div class="ph-card">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700&q=82" alt="Modern minimal bedroom with soft lighting" loading="lazy" width="700" height="1050">
+        <span class="ph-card-lbl">COSMOS</span>
+      </div>
+      <div class="ph-card">
+        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=82" alt="Plush sofa in warm toned living room" loading="lazy" width="700" height="1050">
+        <span class="ph-card-lbl">SYNERGY</span>
+      </div>
+      <div class="ph-card">
+        <img src="https://images.unsplash.com/photo-1549497538-303791108f95?w=700&q=82" alt="Minimal bedroom with clean architectural lines" loading="lazy" width="700" height="1050">
+        <span class="ph-card-lbl">COSMOS</span>
+      </div>
+      <div class="ph-card">
+        <img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=700&q=82" alt="Cosy living space with earth tones" loading="lazy" width="700" height="1050">
+        <span class="ph-card-lbl">OOPARTS</span>
+      </div>
+      <div class="ph-card">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=700&q=82" alt="Luxury bedroom with refined materials" loading="lazy" width="700" height="1050">
+        <span class="ph-card-lbl">BOOST</span>
+      </div>
+      <div class="ph-card">
+        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=700&q=82" alt="Contemporary open plan living area" loading="lazy" width="700" height="1050">
+        <span class="ph-card-lbl">SYNERGY</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ §3 SYNERGY ════════════════════════════════════════ -->
+<section id="synergy">
+  <div class="sy-lbl">[ Design Trend ]</div>
+  <div class="sy-sub">2025 LX Hausys Design Trend</div>
+  <div class="sy-row">
+    <span class="sy-l">SY</span>
+    <span class="sy-e"><span class="sy-ebox">E</span></span>
+    <span class="sy-r">NERGY</span>
+  </div>
+  <div class="sy-tag">New energy that flourishes when we come together</div>
+</section>
+
+<!-- ══ §3b DESC ══════════════════════════════════════════ -->
+<section id="syn-desc">
+  <p class="sd-main">SY(E)NERGY is a fusion of the words "Synergy" and "Energy."<br>It presents the creative energy generated when different values come together.</p>
+  <p class="sd-note">Is this a form of creativity, well-being or luxury in the future of Trendship?</p>
+</section>
+
+<!-- ══ §STATS ════════════════════════════════════════════ -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <span class="stat-num" data-target="52">0</span>
+      <span class="stat-label">Years of Innovation</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-target="30" data-suffix="+">0</span>
+      <span class="stat-label">Countries</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-target="4">0</span>
+      <span class="stat-label">Design Themes 2025</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-target="1200" data-suffix="+">0</span>
+      <span class="stat-label">Material SKUs</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ §4 THEMES ═════════════════════════════════════════ -->
+<section id="themes">
+  <div class="th-lbl">Design Theme</div>
+  <div class="th-slot">
+    <div class="th-list" id="thList">
+      <div class="th-row on" data-i="0">
+        <div class="th-tags l"><span>COMFORT</span><div class="th-thumb"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&q=70" alt="BOOST theme interior" loading="lazy"></div></div>
+        <div class="th-name">BOOST</div>
+        <div class="th-tags r"><div class="th-thumb"><img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&q=70" alt="BOOST theme energy" loading="lazy"></div><span>ENERGY</span></div>
+      </div>
+      <div class="th-row" data-i="1">
+        <div class="th-tags l"><span>SPACE</span><div class="th-thumb"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=70" alt="COSMOS theme space" loading="lazy"></div></div>
+        <div class="th-name">COSMOS</div>
+        <div class="th-tags r"><div class="th-thumb"><img src="https://images.unsplash.com/photo-1549497538-303791108f95?w=200&q=70" alt="COSMOS theme depth" loading="lazy"></div><span>DEPTH</span></div>
+      </div>
+      <div class="th-row" data-i="2">
+        <div class="th-tags l"><span>TIME</span><div class="th-thumb"><img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=200&q=70" alt="OOPARTS theme time" loading="lazy"></div></div>
+        <div class="th-name">OOPARTS</div>
+        <div class="th-tags r"><div class="th-thumb"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=200&q=70" alt="OOPARTS theme line" loading="lazy"></div><span>LINE</span></div>
+      </div>
+      <div class="th-row" data-i="3">
+        <div class="th-tags l"><span>FUSION</span><div class="th-thumb"><img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=200&q=70" alt="SYNERGY theme fusion" loading="lazy"></div></div>
+        <div class="th-name">SYNERGY</div>
+        <div class="th-tags r"><div class="th-thumb"><img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=70" alt="SYNERGY theme flow" loading="lazy"></div><span>FLOW</span></div>
+      </div>
+    </div>
+  </div>
+  <a href="themes/index.html" class="th-cta">View Design Themes</a>
+</section>
+
+<!-- ══ §PHILOSOPHY ═══════════════════════════════════════ -->
+<section id="philosophy">
+  <div class="phil-inner">
+    <p class="phil-quote">"Design is not decoration.<br>It is the shape of how we live."</p>
+    <span class="phil-attr">— LX Hausys Trendship 2025</span>
+  </div>
+</section>
+
+<!-- ══ §5 MAISON ═════════════════════════════════════════ -->
+<section id="maison">
+  <div class="m-orb" id="mOrb"></div>
+  <!-- Botanical blossom SVG — identical to video -->
+  <svg class="m-blossom" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M100 312 Q97 255 87 208 Q77 162 83 118 Q86 93 93 70" stroke="#2a1a18" stroke-width="2.1" fill="none" opacity=".65"/>
+    <g transform="translate(91,64)"><circle r="4.2" fill="#d0a4a4"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#ecc8c8"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#f0d4d4" transform="rotate(72)"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#ecc8c8" transform="rotate(144)"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#f0d4d4" transform="rotate(216)"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#ecc8c8" transform="rotate(288)"/></g>
+    <g transform="translate(81,110) scale(.76)"><circle r="4.2" fill="#d0a4a4"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#ecc8c8"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#f0d4d4" transform="rotate(60)"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#ecc8c8" transform="rotate(120)"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#f0d4d4" transform="rotate(180)"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#ecc8c8" transform="rotate(240)"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#f0d4d4" transform="rotate(300)"/></g>
+    <g transform="translate(89,150) scale(.58)"><circle r="4.2" fill="#d0a4a4"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#ecc8c8"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#f0d4d4" transform="rotate(72)"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#ecc8c8" transform="rotate(144)"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#f0d4d4" transform="rotate(216)"/><ellipse cy="-10" rx="3.2" ry="8.5" fill="#ecc8c8" transform="rotate(288)"/></g>
+    <ellipse cx="84" cy="178" rx="2.4" ry="4.8" fill="#c89898" transform="rotate(-15,84,178)"/>
+    <ellipse cx="79" cy="194" rx="2.4" ry="4.4" fill="#c89898" transform="rotate(12,79,194)"/>
+    <ellipse cx="87" cy="214" rx="8.5" ry="19" fill="#3a5030" opacity=".52" transform="rotate(-26,87,214)"/>
+    <ellipse cx="96" cy="236" rx="6.5" ry="14" fill="#3a5030" opacity=".42" transform="rotate(24,96,236)"/>
+  </svg>
+  <div class="m-content" id="mContent">
+    <div class="m-exh">( Exhibition )</div>
+    <div class="m-title">
+      <span class="de">Maison de</span>
+      <span class="sy">Synergy</span>
+    </div>
+    <p class="m-body">'Maison de Synergy' is an exhibition that emerges from the unique fusion of materials and fashion, as well as the reinvention of past styles infused with a modern sensibility. Discover the exhibition review.</p>
+    <a href="exhibition/index.html" class="m-link">View Offline Exhibition →</a>
+  </div>
+  <div class="m-temple" id="mTemple">
+    <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1600&q=80" alt="Korean traditional temple architecture at dusk" id="templeImg" loading="lazy" width="1600" height="900">
+  </div>
+</section>
+
+<!-- ══ §6 BUILDING NIGHT ══════════════════════════════════ -->
+<section id="building">
+  <img class="b-img" id="bImg"
+    src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&q=75"
+    alt="Neoclassical building facade illuminated at night"
+    loading="lazy" width="1800" height="1000">
+  <div class="b-vig"></div>
+  <div class="b-overlay">
+    <div class="b-eyebrow">( Maison de Synergy — Offline Exhibition )</div>
+    <div class="b-title">Where art and<br>design converge</div>
+    <a href="exhibition/index.html" class="b-link">Enter Exhibition <span>→</span></a>
+  </div>
+</section>
+
+<!-- ══ §MATERIALS PREVIEW ════════════════════════════════ -->
+<section id="materials">
+  <div class="mat-head">
+    <div>
+      <div class="mat-eyebrow">Collection 2025</div>
+      <h2 class="mat-h2">LX Hausys<br>Materials</h2>
+      <p class="mat-sub">1,200+ surface materials across four design themes.</p>
+    </div>
+    <a href="collection/index.html" class="mat-link">View Full Collection <span>→</span></a>
+  </div>
+  <div class="mat-grid">
+    <div class="mat-card">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Terracotta linen surface material texture" loading="lazy" width="600" height="800">
+      <div class="mat-card-body">
+        <div class="mat-card-theme">BOOST</div>
+        <div class="mat-card-name">Terracotta Linen</div>
+        <div class="mat-dots">
+          <span class="mat-dot" style="background:#c8885a;border-color:#c8885a"></span>
+          <span class="mat-dot" style="background:#b87848;border-color:#b87848"></span>
+          <span class="mat-dot" style="background:#d8a880;border-color:#d8a880"></span>
+        </div>
+      </div>
+    </div>
+    <div class="mat-card">
+      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=600&q=80" alt="Deep midnight slate stone material" loading="lazy" width="600" height="800">
+      <div class="mat-card-body">
+        <div class="mat-card-theme">COSMOS</div>
+        <div class="mat-card-name">Midnight Slate</div>
+        <div class="mat-dots">
+          <span class="mat-dot" style="background:#3a4870;border-color:#3a4870"></span>
+          <span class="mat-dot" style="background:#2a3860;border-color:#2a3860"></span>
+          <span class="mat-dot" style="background:#4a5880;border-color:#4a5880"></span>
+        </div>
+      </div>
+    </div>
+    <div class="mat-card">
+      <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=600&q=80" alt="Ancient earth warm brown textured material" loading="lazy" width="600" height="800">
+      <div class="mat-card-body">
+        <div class="mat-card-theme">OOPARTS</div>
+        <div class="mat-card-name">Ancient Earth</div>
+        <div class="mat-dots">
+          <span class="mat-dot" style="background:#9a7840;border-color:#9a7840"></span>
+          <span class="mat-dot" style="background:#7a5820;border-color:#7a5820"></span>
+          <span class="mat-dot" style="background:#c0a060;border-color:#c0a060"></span>
+        </div>
+      </div>
+    </div>
+    <div class="mat-card">
+      <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80" alt="Bloom rose soft pink surface material" loading="lazy" width="600" height="800">
+      <div class="mat-card-body">
+        <div class="mat-card-theme">SYNERGY</div>
+        <div class="mat-card-name">Bloom Rose</div>
+        <div class="mat-dots">
+          <span class="mat-dot" style="background:#d4857a;border-color:#d4857a"></span>
+          <span class="mat-dot" style="background:#e8a8b0;border-color:#e8a8b0"></span>
+          <span class="mat-dot" style="background:#c47068;border-color:#c47068"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ §7 ABOUT ══════════════════════════════════════════ -->
+<section id="about">
+  <div class="ab-lbl">( About Trendship )</div>
+  <div class="ab-wrap">
+    <div class="ab-ticker" id="abTicker">TRENDSHIP&nbsp;&nbsp;&nbsp;&nbsp;TRENDSHIP</div>
+  </div>
+  <div class="ab-img ab-img1">
+    <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&q=75"
+      alt="Contemporary interior design space" loading="lazy" width="600" height="780">
+  </div>
+  <div class="ab-img ab-img2">
+    <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600&q=75"
+      alt="Architectural interior with refined surfaces" loading="lazy" width="600" height="660">
+  </div>
+  <a href="about/index.html" class="ab-cta">Learn About Us <span>→</span></a>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════ -->
+<footer id="footer" role="contentinfo">
+  <div class="ft-top">
+    <div class="ft-brand">
+      <span class="ft-logo">TRENDSHIP</span>
+      <p>New energy that flourishes when we come together. LX Hausys 2025 Design Trend Platform.</p>
+      <div class="ft-social">
+        <a href="https://instagram.com/lxhausys" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a href="https://linkedin.com/company/lxhausys" target="_blank" rel="noopener" aria-label="LinkedIn">LI</a>
+        <a href="https://youtube.com/@lxhausys" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h4>Explore</h4>
+      <a href="design-trend/index.html">Design Trend</a>
+      <a href="themes/index.html">Themes</a>
+      <a href="exhibition/index.html">Exhibition</a>
+      <a href="collection/index.html">Collection</a>
+    </div>
+    <div class="ft-col">
+      <h4>More</h4>
+      <a href="trend-report/index.html">Trend Report</a>
+      <a href="lookbook/index.html">Lookbook</a>
+      <a href="about/index.html">About</a>
+      <a href="contact/index.html">Contact</a>
+      <a href="admin/login.html">Maison Access</a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span class="ft-copy">© 2025 LX Hausys. All rights reserved.</span>
+    <span class="ft-made">Designed with love in Seoul, 2025</span>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════
+  JAVASCRIPT — All page logic below
+════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+/* ── 1. GSAP + LENIS SETUP ───────────────────────────── */
+gsap.registerPlugin(ScrollTrigger);
+const lenis = new Lenis({ lerp: .085 });
+gsap.ticker.add(t => lenis.raf(t * 1000));
+gsap.ticker.lagSmoothing(0);
+lenis.on('scroll', ScrollTrigger.update);
+
+/* scroll progress bar */
+lenis.on('scroll', ({ progress }) => {
+  document.getElementById('progress-bar').style.width = (progress * 100) + '%';
+});
+
+/* ── 2. CUSTOM CURSOR ────────────────────────────────── */
+const cur = document.getElementById('cur');
+if (cur && window.matchMedia('(hover:hover)').matches) {
+  gsap.set(cur, { xPercent: -50, yPercent: -50 });
+  window.addEventListener('mousemove', e => {
+    gsap.to(cur, { x: e.clientX, y: e.clientY, duration: .1, overwrite: true });
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    cur.classList.toggle('lt', !!(el?.closest('#hero,#about,#maison,#materials')));
+  });
+  document.querySelectorAll('a,button,.th-row,.mat-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cur.classList.add('xl'));
+    el.addEventListener('mouseleave', () => cur.classList.remove('xl'));
+  });
+}
+
+/* ── 3. NAV OVERLAY ──────────────────────────────────── */
+const navMenuBtn = document.getElementById('nav-menu');
+const navOverlay = document.getElementById('nav-overlay');
+const navClose   = document.getElementById('nav-close');
+let overlayOpen  = false;
+
+gsap.set('.no-item', { y: 40, opacity: 0 });
+gsap.set('.no-footer', { opacity: 0 });
+
+function openOverlay() {
+  overlayOpen = true;
+  navMenuBtn.setAttribute('aria-expanded', 'true');
+  navOverlay.classList.add('open');
+  gsap.to(navOverlay, { scale: 1, opacity: 1, duration: .55, ease: 'power3.inOut' });
+  gsap.to('.no-item',  { y: 0, opacity: 1, stagger: .055, duration: .5, ease: 'power3.out', delay: .2 });
+  gsap.to('.no-footer',{ opacity: 1, duration: .4, delay: .55 });
+  lenis.stop();
+}
+function closeOverlay() {
+  overlayOpen = false;
+  navMenuBtn.setAttribute('aria-expanded', 'false');
+  gsap.to('.no-item, .no-footer', { y: -18, opacity: 0, stagger: .03, duration: .25, ease: 'power2.in' });
+  gsap.to(navOverlay, {
+    scale: 0, opacity: 0, duration: .38, ease: 'power3.in', delay: .08,
+    onComplete: () => {
+      navOverlay.classList.remove('open');
+      gsap.set('.no-item', { y: 40, opacity: 0 });
+      gsap.set('.no-footer', { opacity: 0 });
+    }
+  });
+  lenis.start();
+}
+
+navMenuBtn.addEventListener('click', () => overlayOpen ? closeOverlay() : openOverlay());
+navClose.addEventListener('click', closeOverlay);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlayOpen) closeOverlay(); });
+document.querySelectorAll('.no-item').forEach(a => a.addEventListener('click', closeOverlay));
+
+/* ── 4. THREE.JS — CORAL ORGANISM ───────────────────── */
+const heroEl  = document.getElementById('hero');
+const canvas3 = document.getElementById('three-canvas');
+
+const scene    = new THREE.Scene();
+const camera   = new THREE.PerspectiveCamera(52, 1, .1, 200);
+camera.position.z = 7.5;
+
+const renderer = new THREE.WebGLRenderer({ powerPreference: "high-performance", canvas: canvas3, alpha: true, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+
+function resizeRenderer() {
+  const w = heroEl.clientWidth, h = heroEl.clientHeight;
+  renderer.setSize(w, h);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+resizeRenderer();
+
+/* Warm lighting */
+scene.add(new THREE.AmbientLight(0xffeedd, 1.1));
+const dL = new THREE.DirectionalLight(0xffffff, 1.8);
+dL.position.set(5, 6, 7); scene.add(dL);
+const pL  = new THREE.PointLight(0xf8c0c8, 2.5, 20);
+pL.position.set(-4, 3, 3); scene.add(pL);
+const pL2 = new THREE.PointLight(0xffe8e8, 1.2, 15);
+pL2.position.set(3, -4, 5); scene.add(pL2);
+
+/* Shared material — translucent pink */
+const orgMat = new THREE.MeshStandardMaterial({
+  color: 0xeaaab2, roughness: .52, metalness: .04,
+  transparent: true, opacity: .92
+});
+
+/* Group */
+const group = new THREE.Group();
+scene.add(group);
+
+/* Core sphere */
+group.add(new THREE.Mesh(
+  new THREE.SphereGeometry(.55, 32, 32),
+  new THREE.MeshStandardMaterial({ color: 0xf8d8dc, roughness: .55, metalness: .02 })
+));
+
+/* Tentacles — Fibonacci sphere distribution */
+const PHI = Math.PI * (3 - Math.sqrt(5));
+const tentacles = [];
+for (let i = 0; i < 120; i++) {
+  const yi  = 1 - (i / 119) * 2;
+  const ri  = Math.sqrt(Math.max(0, 1 - yi * yi));
+  const ang = PHI * i;
+  const dir = new THREE.Vector3(ri * Math.cos(ang), yi, ri * Math.sin(ang)).normalize();
+  const len = .7 + Math.random() * .95;
+  const rad = .045 + Math.random() * .025;
+
+  const cyl = new THREE.Mesh(new THREE.CylinderGeometry(rad, rad * .65, len, 8, 1), orgMat);
+  const tip = new THREE.Mesh(new THREE.SphereGeometry(rad * .95, 8, 8), orgMat);
+  tip.position.y = len / 2;
+
+  const tg = new THREE.Group();
+  tg.add(cyl, tip);
+  tg.position.copy(dir.clone().multiplyScalar(.58 + len / 2));
+  tg.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+  group.add(tg);
+  tentacles.push({ mesh: tg, phase: Math.random() * Math.PI * 2 });
+}
+
+/* position center-right as in video */
+group.position.set(2.0, .3, 0);
+
+let mScale = 0;
+let tX = 2.0, tY = .3, cX = 2.0, cY = .3;
+
+window.addEventListener('mousemove', e => {
+  tX = 2.0 + (e.clientX / window.innerWidth  - .5) * 1.8;
+  tY = .3  - (e.clientY / window.innerHeight - .5) * 1.4;
+});
+
+/* RAF — note: separate from Lenis/GSAP ticker to keep 60fps */
+(function animThree() {
+  requestAnimationFrame(animThree);
+  const t = performance.now() * .001;
+  cX += (tX - cX) * .038; cY += (tY - cY) * .038;
+  group.position.set(cX, cY, 0);
+  group.scale.setScalar(mScale * (1 + Math.sin(t * 1.5) * .042));
+  group.rotation.y += .003;
+  group.rotation.z += .001;
+  tentacles.forEach(t3 => {
+    const w = 1 + .18 * Math.sin(t * 1.8 + t3.phase) * Math.cos(t * .9 + t3.phase * .7);
+    t3.mesh.scale.set(1, w, 1);
+  });
+  renderer.render(scene, camera);
+})();
+
+/* ── 5. HERO TEXT SPLIT ──────────────────────────────── */
+const hwEl = document.getElementById('hw');
+hwEl.innerHTML = [...hwEl.textContent].map(c =>
+  `<span class="lw"><span class="lc">${c}</span></span>`
+).join('');
+
+/* ── 6. PAGE LOAD SEQUENCE ───────────────────────────── */
+gsap.set('#hero', { opacity: 0 });
+const tlLoad = gsap.timeline({ delay: .1 });
+tlLoad
+  .to('#hero',   { opacity: 1, duration: .6, ease: 'power2.out' })
+  .to({ v: 0 },  { v: 1, duration: 1.6, ease: 'elastic.out(1,.46)',
+    onUpdate: function() { mScale = this.targets()[0].v; }
+  }, .32)
+  .to('.lc',     { y: 0, opacity: 1, duration: .72, ease: 'power3.out', stagger: .038 }, .52)
+  .to('#heroScroll', { opacity: 1, duration: .5 }, 1.4);
+
+/* ── 7. NAV COLOR & BLUR TOGGLER ─────────────────────── */
+const nav = document.getElementById('nav');
+
+// Default initial state: Light background, Dark text (Hero)
+gsap.set(nav, { color: 'var(--text-dark)' });
+
+// Helper to set nav state: 'hero' | 'dark' | 'light'
+const setNav = (mode) => {
+  nav.classList.remove('dk', 'bl', 'lt');
+  if (mode === 'dark') {
+    nav.classList.add('dk', 'bl');
+  } else if (mode === 'light') {
+    nav.classList.add('lt');
+  }
+};
+
+// 7a. Hero (light) -> Content (dark)
+ScrollTrigger.create({
+  trigger: '#photos', start: 'top 72px',
+  onEnter: () => setNav('dark'),
+  onLeaveBack: () => setNav('hero')
+});
+
+// 7b. Dark sections -> Materials (light)
+ScrollTrigger.create({
+  trigger: '#materials', start: 'top 72px',
+  onEnter: () => setNav('light'),
+  onLeaveBack: () => setNav('dark')
+});
+
+// 7c. About + footer transitions
+ScrollTrigger.create({
+  trigger: '#footer', start: 'top 80px',
+  onEnter: () => setNav('dark'),
+  onLeaveBack: () => setNav('light')
+});
+
+// 7c. Ensure Visibility of Section Labels
+gsap.set('.sy-lbl, .th-lbl', { opacity: 0.7, color: 'inherit' });
+
+
+/* ── 8. HERO — BACKGROUND COLOUR + ORGANISM SCALE ───── */
+gsap.to({}, {
+  scrollTrigger: {
+    trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true,
+    onUpdate: self => {
+      const p = self.progress;
+      const r = Math.round(212 - p * 202);
+      const g = Math.round(196 - p * 186);
+      const b = Math.round(188 - p * 178);
+      heroEl.style.backgroundColor = `rgb(${r},${g},${b})`;
+      mScale = 1 + p * 4.2;
+      canvas3.style.opacity = Math.max(0, 1 - p * 1.2).toString();
+    }
+  }
+});
+
+/* ── 9. PHOTO STRIP ──────────────────────────────────── */
+const stripEl = document.getElementById('phStrip');
+gsap.to('.ph-card', {
+  opacity: 1, y: 0, stagger: .1, ease: 'power2.out',
+  scrollTrigger: { trigger: '#photos', start: 'top 76%', end: 'center 50%', scrub: 1 }
+});
+gsap.to('#phStrip', {
+  x: () => -(stripEl.scrollWidth - window.innerWidth + 110),
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '#photos', start: 'top top', end: 'bottom top',
+    pin: true, scrub: 1.5, invalidateOnRefresh: true
+  }
+});
+
+/* ── 10. SYNERGY CRASH ───────────────────────────────── */
+gsap.set('.sy-tag', { y: 14 });
+const tlSy = gsap.timeline({
+  scrollTrigger: { trigger: '#synergy', start: 'top 62%', toggleActions: 'play none none reverse' }
+});
+tlSy
+  .to('.sy-l', { x: 0, opacity: 1, duration: .82, ease: 'power4.out' }, 0)
+  .to('.sy-r', { x: 0, opacity: 1, duration: .82, ease: 'power4.out' }, 0)
+  .to('.sy-e', { scale: 1.16, opacity: 1, duration: .22, ease: 'power2.out' }, .68)
+  .to('.sy-e', { scale: 1, duration: .2, ease: 'back.out(3)' }, .9)
+  .to('.sy-tag', { opacity: 1, y: 0, duration: .5 }, 1.06);
+
+/* synergy desc */
+gsap.from('.sd-main,.sd-note', {
+  opacity: 0, y: 28, stagger: .18,
+  scrollTrigger: { trigger: '#syn-desc', start: 'top 70%', toggleActions: 'play none none reverse' }
+});
+
+/* ── 11. STATS COUNT UP ──────────────────────────────── */
+let statsRan = false;
+ScrollTrigger.create({
+  trigger: '#stats', start: 'top 75%', once: true,
+  onEnter: () => {
+    if (statsRan) return;
+    statsRan = true;
+    document.querySelectorAll('.stat-num').forEach(el => {
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      const obj = { val: 0 };
+      gsap.to(obj, {
+        val: target, duration: 2.2, ease: 'power2.out',
+        onUpdate: () => { el.textContent = Math.round(obj.val).toLocaleString() + suffix; }
+      });
+    });
+  }
+});
+
+/* ── 12. THEME PICKER / SLOT MACHINE ────────────────── */
+const rows   = document.querySelectorAll('.th-row');
+const listEl = document.getElementById('thList');
+let aIdx = 0;
+const slH  = () => document.querySelector('.th-slot').clientHeight;
+const rH   = () => listEl.scrollHeight / rows.length;
+const offY = i => slH() / 2 - i * (rH() + 2) - rH() / 2;
+gsap.set(listEl, { y: offY(0) });
+ScrollTrigger.create({
+  trigger: '#themes', start: 'top top', end: '+=1100',
+  pin: true, scrub: 1,
+  onUpdate: self => {
+    const ni = Math.min(rows.length - 1, Math.floor(self.progress * rows.length));
+    if (ni !== aIdx) {
+      rows[aIdx].classList.remove('on');
+      rows[ni].classList.add('on');
+      aIdx = ni;
+    }
+    gsap.to(listEl, { y: offY(aIdx), duration: .44, ease: 'power2.out', overwrite: true });
+  }
+});
+
+/* ── 13. PHILOSOPHY FADE ─────────────────────────────── */
+gsap.from('.phil-quote,.phil-attr', {
+  opacity: 0, y: 24, stagger: .2,
+  scrollTrigger: { trigger: '#philosophy', start: 'top 70%', toggleActions: 'play none none reverse' }
+});
+
+/* ── 14. MAISON ─────────────────────────────────────── */
+ScrollTrigger.create({
+  trigger: '#maison', start: 'top 66%', once: true,
+  onEnter: () => {
+    const orb = document.getElementById('mOrb');
+    gsap.to({ p: .45 }, {
+      p: 1, duration: 1.5, ease: 'power2.out',
+      onUpdate: function() {
+        const p = this.targets()[0].p;
+        orb.style.transform = `translateX(-50%) scale(${p})`;
+        orb.style.opacity   = Math.max(0, (p - .45) * 1.82).toString();
+      }
+    });
+  }
+});
+gsap.from('#mContent > *', {
+  opacity: 0, y: 34, stagger: .15,
+  scrollTrigger: { trigger: '#maison', start: 'top 63%', toggleActions: 'play none none reverse' }
+});
+gsap.to('#templeImg', {
+  y: -60,
+  scrollTrigger: { trigger: '#maison', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+});
+
+/* ── 15. BUILDING PARALLAX ───────────────────────────── */
+gsap.fromTo('#bImg',
+  { scale: 1.06 },
+  { scale: 1,
+    scrollTrigger: { trigger: '#building', start: 'top bottom', end: 'bottom top', scrub: 1.2 }
+  }
+);
+
+/* ── 16. MATERIALS REVEAL ────────────────────────────── */
+async function loadFeaturedMaterials() {
+  try {
+    const res  = await fetch('api/materials/index.php?featured=1');
+    const json = await res.json();
+    if (!json.success) return;
+
+    const grid = document.querySelector('.mat-grid');
+    grid.innerHTML = '';
+
+    json.data.forEach(mat => {
+      const colors = [mat.color_1, mat.color_2, mat.color_3]
+        .filter(Boolean)
+        .map(c => `<span class="mat-dot" style="background:${c};border-color:${c}"></span>`)
+        .join('');
+
+      grid.insertAdjacentHTML('beforeend', `
+        <div class="mat-card">
+          <img src="${mat.image_url}" alt="${mat.name}" loading="lazy" width="600" height="800">
+          <div class="mat-card-body">
+            <div class="mat-card-theme">${mat.theme.toUpperCase()}</div>
+            <div class="mat-card-name">${mat.name}</div>
+            <div class="mat-dots">${colors}</div>
+          </div>
+        </div>
+      `);
+    });
+
+    // Animate new cards
+    gsap.from('.mat-card', {
+      opacity: 0, y: 40, stagger: .12, duration: .9, ease: 'power3.out',
+      scrollTrigger: { trigger: '#materials', start: 'top 72%' }
+    });
+
+  } catch (err) {
+    console.warn('DB load failed, using static fallback');
+  }
+}
+loadFeaturedMaterials();
+
+/* ── 17. ABOUT SECTION ───────────────────────────────── */
+gsap.to('#abTicker', {
+  x: '-36%', ease: 'none',
+  scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: 1.2 }
+});
+gsap.to('.ab-img1', {
+  y: -88, x: 24,
+  scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: 1 }
+});
+gsap.to('.ab-img2', {
+  y: -52, x: -20,
+  scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: 1.4 }
+});
+
+/* ── 18. TRANSITION CIRCLE WIPE ──────────────────────── */
+let wipeRan = false;
+ScrollTrigger.create({
+  trigger: '#themes', start: 'bottom 14%',
+  onEnter: () => {
+    if (wipeRan) return;
+    wipeRan = true;
+    gsap.to('#tDot', {
+      scale: 2900, duration: 1.0, ease: 'power2.in',
+      onComplete: () => gsap.to('#tDot', {
+        scale: 0, duration: .85, ease: 'power2.out', delay: .05,
+        onComplete: () => { wipeRan = false; }
+      })
+    });
+  }
+});
+
+/* ── 19. RESIZE HANDLER ──────────────────────────────── */
+let rTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(rTimer);
+  rTimer = setTimeout(() => {
+    resizeRenderer();
+    ScrollTrigger.refresh(true);
+  }, 220);
+});
+</script>
+</body>
+</html>
+

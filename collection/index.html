@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRENDSHIP | Collection — LX Hausys 2025</title>
+<meta name="description" content="Explore the LX Hausys 2025 material collection. 1,200+ innovative surfaces across four design themes.">
+<meta property="og:title" content="TRENDSHIP — Collection">
+<meta property="og:description" content="Surface innovations for the future of space.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#f4efe9">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<!-- CDN Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+<script src="../js/site-config.js"></script>
+
+<style>
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root{
+  --greige:#d4c4bc; --dark:#0a0a0a; --off-white:#f4efe9;
+  --rose:#d4857a;   --rose-light:#e8a8b0; --rose-pale:#f5dde0;
+  --rose-dust:#c4968e; --wine:#8a4a42; --maison:#bf7268;
+  --text-dark:#1a1614; --text-light:#f0e8e0; --gold:#c8a878;
+  --ff-display:'Bebas Neue',sans-serif;
+  --ff-body:'EB Garamond',serif;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+
+/* ─── RESET ───────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+body{background:var(--off-white);color:var(--text-dark);font-family:var(--ff-body);overflow-x:hidden;cursor:none}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{border:none;background:none;font-family:inherit;cursor:none}
+section{width:100%;position:relative;overflow:hidden}
+
+/* ─── GLOBALS ─────────────────────────────────────────── */
+#progress-bar{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--rose);z-index:9998}
+#cur{position:fixed;top:0;left:0;width:14px;height:14px;border:1.5px solid var(--text-dark);border-radius:50%;pointer-events:none;z-index:9999;transition:width .2s,height .2s,background .2s,border-color .2s}
+#cur.xl{width:52px;height:52px;background:rgba(212,133,122,.25);border-color:var(--rose)}
+
+/* ─── NAV ─────────────────────────────────────────────── */
+#nav{position:fixed;top:0;left:0;width:100%;padding:24px 56px;display:flex;justify-content:space-between;align-items:center;z-index:800;color:var(--text-dark);transition:color .4s,backdrop-filter .5s,background .5s}
+#nav.bl{backdrop-filter:blur(18px);background:rgba(244,239,233,.8)}
+.n-logo{font-family:var(--ff-display);font-size:18px;letter-spacing:.14em}
+.n-links{display:flex;gap:32px;align-items:center;flex-shrink:1;min-width:0}
+.n-a{font-family:var(--ff-body);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.72;position:relative}
+.n-a.active{opacity:1}
+.n-maison{font-family:var(--ff-body);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--rose);opacity:.85;text-decoration:none;transition:opacity .2s}
+.n-maison:hover{opacity:1}
+.n-a.active::after{content:'';position:absolute;bottom:-3px;left:0;width:100%;height:1px;background:var(--rose)}
+#nav-menu{width:32px;height:32px;border-radius:50%;background:var(--text-dark);color:#fff;display:none;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+@media(max-width:900px){.n-links .n-a{display:none}#nav-menu{display:flex}}
+
+/* ═══ §1 HERO ═══════════════════════════════════════════ */
+#hero{height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:80px}
+.h-title{font-family:var(--ff-display);font-size:clamp(72px,12vw,160px);line-height:.9;margin-bottom:10px}
+.h-sub{font-size:15px;letter-spacing:.1em;opacity:.5}
+
+/* ═══ §2 FILTER ═════════════════════════════════════════ */
+#filter-bar{position:sticky;top:72px;z-index:700;padding:20px 56px;background:var(--off-white);display:flex;justify-content:center;gap:12px;border-bottom:1px solid rgba(0,0,0,.05)}
+.f-btn{padding:8px 24px;border:1px solid rgba(0,0,0,.1);border-radius:30px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;transition:all .3s}
+.f-btn.active{background:var(--rose);color:#fff;border-color:var(--rose)}
+.f-btn:hover:not(.active){background:rgba(0,0,0,.03)}
+
+/* ═══ §3 GRID ═══════════════════════════════════════════ */
+#grid-section{padding:80px 56px;max-width:1400px;margin:0 auto}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{aspect-ratio:3/4;border-radius:3px;overflow:hidden;position:relative;background:#eee;cursor:none}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease-out)}
+.card:hover img{transform:scale(1.06)}
+.card-overlay{position:absolute;inset:0;background:rgba(10,10,10,.2);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;opacity:0;transition:opacity .4s}
+.card:hover .card-overlay{opacity:1}
+.card-theme{font-size:9px;letter-spacing:.25em;color:var(--rose-light);margin-bottom:8px}
+.card-name{font-family:var(--ff-display);font-size:24px;color:#fff}
+
+/* ═══ MODAL ═════════════════════════════════════════════ */
+#modal{position:fixed;inset:0;z-index:2000;background:rgba(10,10,10,.95);display:none;align-items:center;justify-content:center;padding:40px}
+.modal-inner{background:var(--off-white);width:100%;max-width:1000px;display:grid;grid-template-columns:1fr 1fr;border-radius:4px;overflow:hidden;position:relative}
+.modal-close{position:absolute;top:24px;right:32px;font-size:24px;z-index:5}
+.modal-img{height:100%;min-height:500px}
+.modal-img img{width:100%;height:100%;object-fit:cover}
+.modal-info{padding:60px;color:var(--text-dark)}
+.modal-theme{color:var(--rose);font-size:11px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:12px;display:block}
+.modal-name{font-family:var(--ff-display);font-size:48px;line-height:1;margin-bottom:24px}
+.modal-p{font-size:15px;line-height:1.7;opacity:.7;margin-bottom:32px}
+.modal-dots{display:flex;gap:10px;margin-bottom:40px}
+.modal-dot{width:24px;height:24px;border-radius:50%;border:1px solid rgba(0,0,0,.1)}
+.modal-cta{padding:14px 32px;background:var(--dark);color:#fff;border-radius:40px;font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+
+/* ═══ FOOTER ═════════════════════════════════════════════ */
+#footer{background:var(--dark);color:var(--text-light);padding:72px 56px}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}.modal-inner{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div id="cur" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a href="../index.html" class="n-logo">TRENDSHIP</a>
+  <div class="n-links">
+    <a href="../index.html" class="n-a">Home</a>
+    <a href="../design-trend/index.html" class="n-a">Design Trend</a>
+    <a href="../themes/index.html" class="n-a">Themes</a>
+    <a href="../exhibition/index.html" class="n-a">Exhibition</a>
+    <a href="../collection/index.html" class="n-a active">Collection</a>
+    <a href="../admin/login.html" class="n-maison" title="Maison Atelier">Maison</a>
+    <button id="nav-menu">☰</button>
+  </div>
+</nav>
+
+<main>
+  <section id="hero">
+    <h1 class="h-title">COLLECTION</h1>
+    <p class="h-sub">LX Hausys Materials 2025</p>
+  </section>
+
+  <div id="filter-bar">
+    <button class="f-btn active" data-filter="all">All</button>
+    <button class="f-btn" data-filter="boost">Boost</button>
+    <button class="f-btn" data-filter="cosmos">Cosmos</button>
+    <button class="f-btn" data-filter="ooparts">Ooparts</button>
+    <button class="f-btn" data-filter="synergy">Synergy</button>
+  </div>
+
+  <section id="grid-section">
+    <div class="grid" id="mat-grid">
+      <!-- 12 cards will be here -->
+    </div>
+  </section>
+</main>
+
+<div id="mat-modal">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-img"><img id="modal-mat-img" src="" alt=""></div>
+    <div class="modal-info">
+      <span class="modal-theme" id="modal-mat-theme"></span>
+      <h2 class="modal-name" id="modal-mat-name"></h2>
+      <div style="font-size:11px;letter-spacing:.1em;color:var(--rose-dust);margin-bottom:20px">
+        CODE: <span id="modal-mat-code"></span> | SURFACE: <span id="modal-mat-surface"></span>
+      </div>
+      <p class="modal-p" id="modal-mat-desc">A signature 2025 surface material defining the intersection of durability and luxury.</p>
+      <div class="modal-dots" id="m-dots"></div>
+      <button class="modal-cta">Download Spec Sheet</button>
+    </div>
+  </div>
+</div>
+
+<footer id="footer">
+  <div class="ft-bottom">© 2025 LX Hausys.</div>
+</footer>
+
+<script>
+'use strict';
+const materials = [
+  {id:'B01', theme:'boost', name:'Terracotta Linen', img:'photo-1558618666-fcd25c85cd64', cols:['#c8885a','#b87848','#d8a880']},
+  {id:'B02', theme:'boost', name:'Warm Oak', img:'photo-1600566753190-17f0baa2a6c3', cols:['#c8a060','#a88040','#e0c080']},
+  {id:'B03', theme:'boost', name:'Amber Matte', img:'photo-1594736797933-d0501ba2fe65', cols:['#d09848','#b07828','#e8b868']},
+  {id:'C01', theme:'cosmos', name:'Midnight Slate', img:'photo-1519710164239-da123dc03ef4', cols:['#3a4870','#2a3860','#4a5880']},
+  {id:'C02', theme:'cosmos', name:'Void Navy', img:'photo-1557804506-669a67965ba0', cols:['#1a2248','#0a1230','#2a3258']},
+  {id:'C03', theme:'cosmos', name:'Steel Blue', img:'photo-1550859492-d5da9d8e45f3', cols:['#607090','#485878','#788aa8']},
+  {id:'O01', theme:'ooparts', name:'Ancient Earth', img:'photo-1565538810643-b5bdb714032a', cols:['#9a7840','#7a5820','#c0a060']},
+  {id:'O02', theme:'ooparts', name:'Stone Ash', img:'photo-1493666438817-866a91353ca9', cols:['#a8a090','#888070','#c8c0b0']},
+  {id:'O03', theme:'ooparts', name:'Fossil Brown', img:'photo-1598928506311-c55ded91a20c', cols:['#8a6848','#6a4828','#aA8868']},
+  {id:'S01', theme:'synergy', name:'Bloom Rose', img:'photo-1616486338812-3dadae4b4ace', cols:['#d4857a','#b46858','#e8a898']},
+  {id:'S02', theme:'synergy', name:'Petal Pink', img:'photo-1617104678090-33e8e12c3dd2', cols:['#e8b0b0','#c89090','#f8d0d0']},
+  {id:'S03', theme:'synergy', name:'Silk Greige', img:'photo-1600210492493-0946911123ea', cols:['#c8b8b0','#a89890','#e0d8d0']}
+];
+
+const grid = document.getElementById('mat-grid');
+function render(filter = 'all') {
+  grid.innerHTML = '';
+  materials.filter(m => filter === 'all' || m.theme === filter).forEach(m => {
+    const el = document.createElement('div');
+    el.className = 'card';
+    el.onclick = () => openModal(m);
+    el.innerHTML = `
+      <img src="https://images.unsplash.com/${m.img}?w=600&q=80" loading="lazy">
+      <div class="card-overlay">
+        <span class="card-theme">${m.theme}</span>
+        <h3 class="card-name">${m.name}</h3>
+      </div>
+    `;
+    grid.appendChild(el);
+  });
+}
+
+function openModal(m) {
+  document.getElementById('m-theme').textContent = m.theme;
+  document.getElementById('m-name').textContent = m.name;
+  document.getElementById('m-img').innerHTML = `<img src="https://images.unsplash.com/${m.img}?w=800&q=70">`;
+  const dots = document.getElementById('m-dots');
+  dots.innerHTML = '';
+  m.cols.forEach(c => {
+    const d = document.createElement('div');
+    d.className = 'modal-dot';
+    d.style.background = c;
+    dots.appendChild(d);
+  });
+  document.getElementById('modal').style.display = 'flex';
+}
+window.closeModal = () => document.getElementById('modal').style.display = 'none';
+
+/* Init filter from URL */
+const params = new URLSearchParams(window.location.search);
+const f = params.get('filter') || 'all';
+render(f);
+document.querySelectorAll('.f-btn').forEach(btn => {
+  if(btn.dataset.filter === f) btn.classList.add('active');
+  btn.onclick = () => {
+    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render(btn.dataset.filter);
+    history.replaceState(null, '', `?filter=${btn.dataset.filter}`);
+  };
+});
+
+/* Global */
+gsap.registerPlugin(ScrollTrigger);
+const lenis = new Lenis({ lerp: .085 });
+gsap.ticker.add(t => lenis.raf(t * 1000));
+lenis.on('scroll', ScrollTrigger.update);
+const cur = document.getElementById('cur');
+window.addEventListener('mousemove', e => gsap.to(cur, {x:e.clientX, y:e.clientY, duration:.1}));
+document.querySelectorAll('a,button').forEach(el => {
+  el.onmouseenter = () => cur.classList.add('xl');
+  el.onmouseleave = () => cur.classList.remove('xl');
+});
+ScrollTrigger.create({ trigger:'#hero', start:'bottom 72px', onEnter:()=>document.getElementById('nav').classList.add('bl'), onLeaveBack:()=>document.getElementById('nav').classList.remove('bl')});
+
+// ── Load materials from database ──────────────────────────
+// Replaces the hardcoded material cards with live data from MySQL
+async function loadMaterials(filter = 'all') {
+  const url = filter === 'all'
+    ? '../api/materials/index.php'
+    : `../api/materials/index.php?theme=${filter}`;
+
+  try {
+    const res  = await fetch(url);
+    const json = await res.json();
+    if (!json.success) return;
+
+    const grid = document.getElementById('mat-grid');
+    grid.innerHTML = '';
+
+    json.data.forEach(mat => {
+      const colors = [mat.color_1, mat.color_2, mat.color_3]
+        .filter(Boolean)
+        .map(c => `<span class="mat-dot" style="background:${c};border-color:${c}"></span>`)
+        .join('');
+
+      grid.insertAdjacentHTML('beforeend', `
+        <article class="mat-card card" data-id="${mat.id}" data-theme="${mat.theme}"
+                 onclick="openMatModal(${mat.id})"
+                 aria-label="${mat.name} material">
+          <img src="${mat.image_url}" alt="${mat.name} surface material"
+               loading="lazy" width="600" height="800">
+          <div class="mat-card-body card-overlay">
+            <div class="mat-card-theme card-theme">${mat.theme.toUpperCase()}</div>
+            <div class="mat-card-name card-name">${mat.name}</div>
+            <div class="mat-dots">${colors}</div>
+          </div>
+        </article>
+      `);
+    });
+
+    // Re-run GSAP reveal on new cards
+    gsap.from('.mat-card', { opacity:0, y:40, stagger:.08, duration:.8, ease:'power3.out',
+      scrollTrigger:{ trigger:'#mat-grid', start:'top 80%', once:true } });
+
+  } catch (err) {
+    console.warn('Could not load materials from DB, using static fallback:', err);
+  }
+}
+
+// Open material detail modal
+async function openMatModal(id) {
+  const res  = await fetch(`../api/materials/read.php?id=${id}`);
+  const json = await res.json();
+  if (!json.success) return;
+  const m = json.data;
+
+  document.getElementById('modal-mat-name').textContent  = m.name;
+  document.getElementById('modal-mat-code').textContent  = m.code;
+  document.getElementById('modal-mat-theme').textContent = m.theme.toUpperCase();
+  document.getElementById('modal-mat-img').src           = m.image_url;
+  document.getElementById('modal-mat-desc').textContent  = m.description || '';
+  document.getElementById('modal-mat-surface').textContent = m.surface;
+  
+  // Set CTA to PDF
+  const cta = document.querySelector('#mat-modal .modal-cta');
+  if (cta) cta.onclick = () => window.location.href = `../assets/specs/${m.code}.pdf`;
+
+  document.getElementById('mat-modal').style.display = 'flex';
+  document.getElementById('mat-modal').classList.add('open');
+}
+
+window.closeModal = () => {
+  document.getElementById('mat-modal').style.display = 'none';
+  document.getElementById('mat-modal').classList.remove('open');
+};
+
+// Filter button clicks
+document.querySelectorAll('.f-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    loadMaterials(btn.dataset.filter);
+    // Update URL without reload
+    history.replaceState({}, '', `?filter=${btn.dataset.filter}`);
+  });
+});
+
+// Initial load — respect URL param
+const urlFilter = new URLSearchParams(window.location.search).get('filter') || 'all';
+loadMaterials(urlFilter);
+</script>
+</body>
+</html>
+

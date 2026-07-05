@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login — TRENDSHIP</title>
+<meta name="theme-color" content="#d4c4bc">
+<!-- Must run first: redirect file:// to XAMPP so PHP login works -->
+<script src="../js/site-config.js"></script>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body class="login-body">
+<div class="admin-grain" aria-hidden="true"></div>
+
+<div class="login-split">
+  <aside class="login-brand" aria-hidden="true">
+    <div class="login-brand-inner">
+      <div class="login-brand-logo">TRENDSHIP</div>
+      <p class="login-brand-tag">LX Hausys · Design Trend 2025</p>
+      <div class="login-themes">
+        <span class="login-theme t-boost">Boost</span>
+        <span class="login-theme t-cosmos">Cosmos</span>
+        <span class="login-theme t-ooparts">Ooparts</span>
+        <span class="login-theme t-synergy">Synergy</span>
+      </div>
+      <blockquote class="login-brand-quote">
+        "Design is not decoration.<br>It is the shape of how we live."
+      </blockquote>
+      <div class="login-brand-stats">
+        <div><strong>1,200+</strong><span>Surfaces</span></div>
+        <div><strong>4</strong><span>Themes</span></div>
+        <div><strong>2025</strong><span>Collection</span></div>
+      </div>
+    </div>
+    <div class="login-brand-orb"></div>
+    <div class="login-brand-line"></div>
+  </aside>
+
+  <main class="login-form-side">
+    <div class="login-form-wrap">
+      <div class="login-form-header">
+        <span class="login-form-eyebrow">Admin Access</span>
+        <h1 class="login-form-title">Sign In</h1>
+        <p class="login-form-desc">Enter your username and password to manage the site.</p>
+      </div>
+
+      <div class="login-notice login-notice-warn" id="noticeDb" hidden>
+        <strong>MySQL is not running.</strong> Open XAMPP Control Panel → click <strong>Start</strong> next to MySQL → refresh this page.
+      </div>
+      <div class="login-notice login-notice-warn" id="noticeFile" hidden>
+        Login requires XAMPP. Open
+        <a id="serverLoginLink" href="login.html">login.html</a>
+        (start Apache + MySQL first).
+      </div>
+      <div class="login-notice" id="noticeExpired" hidden>Your session expired. Please sign in again.</div>
+      <div class="login-err" id="noticeError" hidden></div>
+
+      <form method="POST" action="login.php" id="loginForm" class="login-form" autocomplete="off" novalidate>
+        <div class="login-field">
+          <label class="login-label" for="username">Username</label>
+          <div class="login-input-wrap">
+            <span class="login-field-icon" aria-hidden="true">◈</span>
+            <input class="login-input" type="text" id="username" name="username"
+                   placeholder="Enter username" autocomplete="username" required autofocus>
+          </div>
+        </div>
+
+        <div class="login-field">
+          <label class="login-label" for="password">Password</label>
+          <div class="login-input-wrap">
+            <span class="login-field-icon" aria-hidden="true">◉</span>
+            <input class="login-input" type="password" id="password" name="password"
+                   placeholder="Enter password" autocomplete="current-password" required>
+            <button type="button" class="login-toggle-pw" id="togglePw" aria-label="Show password">Show</button>
+          </div>
+        </div>
+
+        <button class="login-btn" type="submit">
+          <span>Sign In to Admin</span>
+          <span class="login-btn-arrow">→</span>
+        </button>
+      </form>
+
+      <div class="login-footer">
+        <a class="login-back" id="backLink" href="../index.html">← Back to Website</a>
+        <span class="login-secure">Secure admin area</span>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  var base = window.TRENDSHIP_BASE || 'http://localhost/TrendShip';
+
+  document.getElementById('backLink').href = base + '/index.html';
+  document.getElementById('serverLoginLink').href = base + '/admin/login.html';
+  document.getElementById('serverLoginLink').textContent = base + '/admin/login.html';
+
+  if (location.protocol === 'file:') {
+    document.getElementById('noticeFile').hidden = false;
+    document.getElementById('loginForm').action = base + '/admin/login.php';
+  }
+
+  fetch('../api/health.php', { cache: 'no-store' })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      if (!d.db) document.getElementById('noticeDb').hidden = false;
+    })
+    .catch(function () {
+      document.getElementById('noticeDb').hidden = false;
+    });
+
+  var params = new URLSearchParams(location.search);
+  if (params.get('expired')) {
+    document.getElementById('noticeExpired').hidden = false;
+  }
+  var err = params.get('error');
+  if (err) {
+    var el = document.getElementById('noticeError');
+    el.textContent = err;
+    el.hidden = false;
+  }
+
+  document.getElementById('togglePw').addEventListener('click', function () {
+    var pw = document.getElementById('password');
+    var show = pw.type === 'password';
+    pw.type = show ? 'text' : 'password';
+    this.textContent = show ? 'Hide' : 'Show';
+  });
+})();
+</script>
+</body>
+</html>

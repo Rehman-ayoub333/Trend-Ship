@@ -1,0 +1,263 @@
+/* Home Page Styles */
+
+/* §1 Hero */
+.hero {
+  background-color: var(--greige);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.organism-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 5vh;
+}
+
+.hero-wordmark {
+  color: var(--text-dark);
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.hero-wordmark .dot {
+  color: var(--rose);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  right: var(--gutter);
+  writing-mode: vertical-rl;
+  opacity: 0.5;
+}
+
+/* §2 Photo Strip */
+.photo-strip {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.strip-container {
+  width: 100%;
+  padding: 0 5vw;
+}
+
+.strip-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+}
+
+.strip-card {
+  width: 300px;
+  height: 450px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.strip-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* §3 SY(E)NERGY */
+.synergy {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.synergy-wordmark {
+  font-family: var(--font-display);
+  font-size: 13.5vw;
+  color: var(--rose-dust);
+  display: flex;
+  align-items: center;
+  line-height: 0.8;
+}
+
+.e-box {
+  color: var(--rose);
+  margin: 0 1rem;
+}
+
+.tagline {
+  margin-top: 2rem;
+  opacity: 0;
+}
+
+/* §3b Description */
+.synergy-description {
+  padding: 10rem 0;
+}
+
+.centered {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.25rem;
+  line-height: 1.9;
+}
+
+/* §4 Theme Picker */
+.theme-picker {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.picker-container {
+  height: 15vw;
+  overflow: hidden;
+  text-align: center;
+}
+
+.picker-item {
+  font-family: var(--font-display);
+  font-size: 15vw;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.1);
+  transition: color 0.3s ease;
+}
+
+.picker-item.active {
+  color: var(--rose-dust);
+}
+
+/* §5 Maison */
+.maison {
+  min-height: 120vh;
+  background: radial-gradient(circle at center, var(--maison) 0%, var(--dark) 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--text-light);
+  padding: 10rem 0;
+}
+
+.maison-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40vw;
+  height: 40vw;
+  background: var(--rose);
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.maison-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.maison-image img {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+}
+
+/* §6 Building */
+.building {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.building-hero {
+  width: 100%;
+  height: 100%;
+}
+
+.building-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.building-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.8) 0%, transparent 50%, rgba(10,10,10,0.8) 100%);
+  display: flex;
+  align-items: center;
+}
+
+/* §7 About Landing */
+.about-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ticker-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%;
+  z-index: 0;
+}
+
+.ticker {
+  font-family: var(--font-display);
+  font-size: 24vw;
+  opacity: 0.08;
+  white-space: nowrap;
+}
+
+.floating-images {
+  position: relative;
+  height: 60vh;
+  z-index: 1;
+}
+
+.floating-img {
+  position: absolute;
+  width: 300px;
+}
+
+.img-1 { top: 10%; left: 10%; }
+.img-2 { bottom: 10%; right: 10%; }
+
+.grayscale {
+  filter: grayscale(1);
+  transition: filter 0.5s ease;
+}
+
+.grayscale:hover {
+  filter: grayscale(0);
+}

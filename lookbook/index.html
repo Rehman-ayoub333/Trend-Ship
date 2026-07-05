@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRENDSHIP | Lookbook — LX Hausys 2025</title>
+<meta name="description" content="A cinematic journey through Trendship 2025. Visualizing the future of interior spaces through high-fidelity photography.">
+<meta property="og:title" content="TRENDSHIP — Lookbook">
+<meta property="og:description" content="Cinematic interiors by LX Hausys.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0a0a0a">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<!-- CDN Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+<script src="../js/site-config.js"></script>
+
+<style>
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root{
+  --greige:#d4c4bc; --dark:#0a0a0a; --off-white:#f4efe9;
+  --rose:#d4857a;   --rose-light:#e8a8b0; --rose-pale:#f5dde0;
+  --rose-dust:#c4968e; --wine:#8a4a42; --maison:#bf7268;
+  --text-dark:#1a1614; --text-light:#f0e8e0; --gold:#c8a878;
+  --ff-display:'Bebas Neue',sans-serif;
+  --ff-body:'EB Garamond',serif;
+}
+
+/* ─── RESET ───────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+body{background:var(--dark);color:var(--text-light);font-family:var(--ff-body);overflow-x:hidden;cursor:none}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{border:none;background:none;font-family:inherit;cursor:none}
+section{width:100%;position:relative;overflow:hidden}
+
+/* ─── GLOBALS ─────────────────────────────────────────── */
+#progress-bar{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--rose);z-index:9998}
+#cur{position:fixed;top:0;left:0;width:14px;height:14px;border:1.5px solid rgba(255,255,255,.9);border-radius:50%;pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:width .2s,height .2s,background .2s,border-color .2s}
+#cur.xl{width:52px;height:52px;background:rgba(212,133,122,.25);border-color:var(--rose)}
+.cursor-trail{position:fixed;width:72px;height:72px;border-radius:50%;overflow:hidden;pointer-events:none;opacity:0;z-index:8000}
+
+/* ─── NAV ─────────────────────────────────────────────── */
+#nav{position:fixed;top:0;left:0;width:100%;padding:24px 56px;display:flex;justify-content:space-between;align-items:center;z-index:800;color:var(--text-light);transition:color .4s,backdrop-filter .5s,background .5s}
+#nav.bl{backdrop-filter:blur(18px);background:rgba(10,10,10,.2)}
+.n-logo{font-family:var(--ff-display);font-size:18px;letter-spacing:.14em}
+.n-links{display:flex;gap:32px;align-items:center;flex-shrink:1;min-width:0}
+.n-a{font-family:var(--ff-body);font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.72;position:relative}
+.n-a.active{opacity:1}
+.n-a.active::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--rose)}
+.n-maison{font-family:var(--ff-body);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--rose-light);opacity:.85;text-decoration:none;transition:opacity .2s}
+.n-maison:hover{opacity:1}
+#nav-menu{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;display:none;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;cursor:pointer}
+@media(max-width:1200px){.n-links{gap:22px}}
+@media(max-width:900px){.n-links .n-a{display:none}#nav-menu{display:flex}}
+
+/* ═══ DOT NAV ═══════════════════════════════════════════ */
+.lb-dots{position:fixed;right:40px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:15px;z-index:1000}
+.lb-dot{width:8px;height:8px;border:1px solid rgba(255,255,255,.3);border-radius:50%;transition:all .3s}
+.lb-dot.active{background:var(--rose);border-color:var(--rose);transform:scale(1.5)}
+
+/* ═══ SPREADS ═══════════════════════════════════════════ */
+.spread{height:100vh;width:100%;display:flex;align-items:center;justify-content:center;position:relative}
+.spread-img{width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;bottom:40px;right:40px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.5}
+
+/* S1 COVER */
+#lb-s1{display:grid;grid-template-columns:1fr 1.2fr;align-items:center;padding:0 56px}
+.h-title{font-family:var(--ff-display);font-size:10vw;line-height:1}
+
+/* S3 COSMOS */
+.cosmos-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:0 100px;align-items:center}
+.cosmos-text{font-size:2vw;text-align:center;font-style:italic}
+
+/* S4 OOPARTS */
+.triptych{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;height:100%}
+.trip-img{height:100%;width:100%;object-fit:cover;opacity:.65;transition:opacity .5s}
+.trip-img.active{opacity:1}
+
+/* ═══ FOOTER ═════════════════════════════════════════════ */
+#footer{background:#060606;padding:72px 56px}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div id="cur" aria-hidden="true"></div>
+
+<nav id="nav" class="dk bl">
+  <a href="../index.html" class="n-logo">TRENDSHIP</a>
+  <div class="n-links">
+    <a href="../index.html" class="n-a">Home</a>
+    <a href="../design-trend/index.html" class="n-a">Design Trend</a>
+    <a href="../themes/index.html" class="n-a">Themes</a>
+    <a href="../exhibition/index.html" class="n-a">Exhibition</a>
+    <a href="../collection/index.html" class="n-a">Collection</a>
+    <a href="index.html" class="n-a active">Lookbook</a>
+    <a href="../admin/login.html" class="n-maison" title="Maison Atelier">Maison</a>
+    <button id="nav-menu">☰</button>
+  </div>
+</nav>
+
+<nav class="lb-dots">
+  <button class="lb-dot active" onclick="lenis.scrollTo('#lb-s1')"></button>
+  <button class="lb-dot" onclick="lenis.scrollTo('#lb-s2')"></button>
+  <button class="lb-dot" onclick="lenis.scrollTo('#lb-s3')"></button>
+  <button class="lb-dot" onclick="lenis.scrollTo('#lb-s4')"></button>
+  <button class="lb-dot" onclick="lenis.scrollTo('#lb-s5')"></button>
+</nav>
+
+<main>
+  <!-- S1 COVER -->
+  <section id="lb-s1" class="spread">
+    <h1 class="h-title">LOOKBOOK<br>2025</h1>
+    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=70" class="spread-img" style="height:80vh;border-radius:4px">
+  </section>
+
+  <!-- S2 BOOST -->
+  <section id="lb-s2" class="spread">
+    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=70" class="spread-img" id="kenburns">
+    <div class="tag">Terracotta Linen · BOOST</div>
+  </section>
+
+  <!-- S3 COSMOS -->
+  <section id="lb-s3" class="spread">
+    <div class="cosmos-grid">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800" style="height:68vh;object-fit:cover">
+      <div class="cosmos-text">Quiet. Deep. Infinite.</div>
+      <img src="https://images.unsplash.com/photo-1549497538-303791108f95?w=800" style="height:44vh;object-fit:cover;align-self:start">
+    </div>
+  </section>
+
+  <!-- S4 OOPARTS -->
+  <section id="lb-s4" class="spread">
+    <div class="triptych">
+      <img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=800" class="trip-img">
+      <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800" class="trip-img active">
+      <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=800" class="trip-img">
+    </div>
+  </section>
+
+  <!-- S5 SYNERGY -->
+  <section id="lb-s5" class="spread">
+    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&q=70" class="spread-img">
+    <div class="cosmos-text" style="position:absolute;color:#fff">"Where values meet, beauty emerges."</div>
+  </section>
+</main>
+
+<footer id="footer">
+  <div class="ft-bottom">© 2025 LX Hausys.</div>
+</footer>
+
+<script>
+'use strict';
+gsap.registerPlugin(ScrollTrigger);
+const lenis = new Lenis({ lerp: .085 });
+gsap.ticker.add(t => lenis.raf(t * 1000));
+lenis.on('scroll', ScrollTrigger.update);
+
+/* progress bar */
+lenis.on('scroll', ({ progress }) => {
+  document.getElementById('progress-bar').style.width = (progress * 100) + '%';
+  // Update dots
+  const sections = ['#lb-s1','#lb-s2','#lb-s3','#lb-s4','#lb-s5'];
+  const idx = Math.min(4, Math.floor(progress * 5));
+  document.querySelectorAll('.lb-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+});
+
+/* cursor trail */
+const trailImages = [
+  'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=100',
+  'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=100',
+  'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=100',
+  'https://images.unsplash.com/photo-1549497538-303791108f95?w=100',
+  'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=100',
+  'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=100'
+];
+const trail = [];
+for (let i = 0; i < 6; i++) {
+  const el = document.createElement('div');
+  el.className = 'cursor-trail';
+  el.innerHTML = `<img src="${trailImages[i]}" style="width:100%;height:100%;object-fit:cover">`;
+  document.body.appendChild(el);
+  trail.push(el);
+}
+let trailIdx = 0;
+window.addEventListener('mousemove', e => {
+  const el = trail[trailIdx++ % 6];
+  gsap.set(el, { x: e.clientX-36, y: e.clientY-36, opacity:1 });
+  gsap.to(el, { opacity:0, scale:.7, duration:.8, ease:'power2.out' });
+  // Custom cursor
+  gsap.to('#cur', {x:e.clientX, y:e.clientY, duration:.1});
+});
+
+/* Ken burns */
+gsap.to('#kenburns', {
+  scale: 1.05,
+  scrollTrigger: { trigger: '#lb-s2', start: 'top bottom', end: 'bottom top', scrub: true }
+});
+</script>
+</body>
+</html>
+
